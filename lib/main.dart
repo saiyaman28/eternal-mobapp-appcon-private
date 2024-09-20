@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +22,8 @@ Color bgcolor2 = Color.fromRGBO(200, 233, 233, 1.0);
 Color primarycolor = Color.fromRGBO(246, 174, 45, 1.0);
 Color secondarycolor = Color.fromRGBO(34, 71, 73, 1.0);
 Color white = Colors.white;
+
+String today = DateFormat('d MMM y').format(DateTime.now());
 
 // HEADER
 double appbarheight = 100;
@@ -1196,7 +1199,7 @@ class MonitorState extends State<Monitor> {
                                 ),
                               ),
                               Text(
-                                "13 Sept 2024",
+                                today,
                                 style: TextStyle(
                                   fontSize: 17.23,
                                   fontWeight: FontWeight.w800,
@@ -1697,7 +1700,12 @@ class MenuState extends State<Menu> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => BudgetManaging()),
+                          );
+                        },
                         child: Container(
                           height: 60,
                           padding: EdgeInsets.symmetric(horizontal: 13),
@@ -1805,6 +1813,734 @@ class MenuState extends State<Menu> {
                       ),
                     ],
                   ),
+                )
+              ],
+            ),
+          ),
+        )
+    );
+  }
+}
+
+class BudgetManaging extends StatefulWidget {
+  BudgetManaging({super.key});
+  @override
+  BudgetManagingState createState() => BudgetManagingState();
+}
+
+class EditProfile extends StatefulWidget {
+  EditProfile({super.key});
+  @override
+  EditProfileState createState() => EditProfileState();
+}
+
+class EditProfileState extends State<EditProfile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: header(context: context, pagetitle: 'Edit Profile', automaticallyImplyLeading: true),
+        backgroundColor: bgcolor2,
+        bottomNavigationBar: navbar(),
+        body: SingleChildScrollView(
+          child: Container(
+            height: 450,
+            padding: EdgeInsets.symmetric(horizontal: 23),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    TextField(
+                      controller: TextEditingController()..text = 'Carl Andre',
+                      onChanged: (text) => {},
+                      decoration: InputDecoration(
+                        hintText: 'First Name',
+                        filled: true,
+                        fillColor: white,
+                        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 28),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 18),
+                    TextField(
+                      controller: TextEditingController()..text = 'Interino',
+                      onChanged: (text) => {},
+                      decoration: InputDecoration(
+                        hintText: 'Last Name',
+                        filled: true,
+                        fillColor: white,
+                        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 28),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 18),
+                    TextField(
+                      controller: TextEditingController()..text = 'carlpogi@gmail.com',
+                      onChanged: (text) => {},
+                      decoration: InputDecoration(
+                        hintText: 'Email',
+                        filled: true,
+                        fillColor: white,
+                        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 28),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 18),
+                    TextField(
+                      controller: TextEditingController()..text = 'AMA University',
+                      onChanged: (text) => {},
+                      decoration: InputDecoration(
+                        hintText: 'Home Address',
+                        filled: true,
+                        fillColor: white,
+                        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 28),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Menu()),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                        backgroundColor: primarycolor,
+                        foregroundColor: white,
+                        fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                        padding: EdgeInsets.symmetric(vertical: 13),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(13)
+                        )
+                    ),
+                    child: Text('Submit',
+                        style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.w400
+                        )
+                    )
+                )
+              ],
+            ),
+          ),
+        )
+    );
+  }
+}
+
+class BudgetManagingState extends State<BudgetManaging> {
+  String Selected = '2024';
+  final List<String> DropDownItems = ['2023', '2022', '2021'];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: header(context: context, pagetitle: 'Budget Managing', automaticallyImplyLeading: true),
+        backgroundColor: bgcolor2,
+        bottomNavigationBar: navbar(),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(23, 0, 23, 23),
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DailyCap()),
+                    );
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.fromLTRB(13, 13, 13, 18),
+                    decoration: BoxDecoration(
+                      color: secondarycolor,
+                      borderRadius: BorderRadius.all(Radius.circular(13)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Daily Cap',
+                              style: TextStyle(
+                                color: white,
+                                fontSize: 28,
+                                fontWeight: FontWeight.w800,
+                                height: 1.2,
+                              ),
+                            ),
+                            Text('₱5000 / 416 kWh',
+                              style: TextStyle(
+                                color: white,
+                                fontSize: 20.23,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_right,
+                          color: white,
+                          size: 43,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 13),
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.fromLTRB(13, 13, 13, 18),
+                      decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(13)),
+                      ),
+                      child: PopupMenuButton<String>(
+                        initialValue: Selected,
+                        color: primarycolor,
+                        constraints: BoxConstraints.expand(
+                            width: MediaQuery.of(context).size.width - 46,
+                            height: 150
+                        ),
+                        offset: Offset(13, 55),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(bottom: Radius.circular(13))
+                        ),
+                        onSelected: (String newValue) {
+                          setState(() {
+                            Selected = newValue;
+                          });
+                        },
+                        itemBuilder: (BuildContext context) {
+                          return DropDownItems.map((String value) {
+                            return PopupMenuItem<String>(
+                              value: value,
+                              child: Text(value,
+                                style: TextStyle(
+                                  color: white,
+                                  fontSize: 17.23,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            );
+                          }).toList();
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(Selected,
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.w800,
+                                height: 1.2,
+                              ),
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_down,
+                              size: 43,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 6.5),
+                    Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('MONTH',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('TOT. CONS.',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('BILL',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.5),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('January',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('1000 kWh',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('3,350.00',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.5),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('February',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('800 kWh',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('3,050.08',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.5),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('March',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('922 kWh',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('3,333.33',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.5),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('April',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('715 kWh',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('2,458.00',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.5),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('May',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('1100 kWh',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('3,500.00',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.5),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('June',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('498 kWh',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('1,989.13',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.5),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.fromLTRB(13, 6.5, 13, 6.5),
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.vertical(bottom: Radius.circular(13)),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Center(
+                                    child: Text('July',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('966 kWh',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text('3,324.67',
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        )
+    );
+  }
+}
+
+class DailyCap extends StatefulWidget {
+  DailyCap({super.key});
+  @override
+  DailyCapState createState() => DailyCapState();
+}
+
+class DailyCapState extends State<DailyCap> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: header(context: context, pagetitle: 'Daily Cap', automaticallyImplyLeading: true),
+        backgroundColor: bgcolor2,
+        bottomNavigationBar: navbar(),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 23),
+            height: 350,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Set your daily budget cap for your electricity (₱)',
+                            style: TextStyle(
+                                fontSize: 28.23,
+                                fontWeight: FontWeight.w800,
+                                height: 1.2
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 23),
+                    TextField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: 'Amount',
+                        filled: true,
+                        fillColor: white,
+                        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 28),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BudgetManaging()),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                        backgroundColor: primarycolor,
+                        foregroundColor: white,
+                        fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                        padding: EdgeInsets.symmetric(vertical: 13),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(13)
+                        )
+                    ),
+                    child: Text('Submit',
+                        style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.w400
+                        )
+                    )
                 )
               ],
             ),
