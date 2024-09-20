@@ -173,6 +173,9 @@ class navbar extends StatelessWidget {
 class Index extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double widthsize = MediaQuery.of(context).size.width;
+    double heightsize = MediaQuery.of(context).size.height;
+
     return MaterialApp(
       home: Scaffold(
         backgroundColor: bgcolor1,
@@ -189,8 +192,8 @@ class Index extends StatelessWidget {
             ),
             Center(
               child: Container(
-                width: double.infinity,
-                height: 600,
+                width: widthsize,
+                height: heightsize * .633,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -198,55 +201,56 @@ class Index extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          height: 200,
+                          height: heightsize * .2,
                           child: Image(
-                            image: AssetImage('images/LOGO.png')
+                              image: AssetImage('images/LOGO.png')
                           ),
                         ),
                         Column(
                           children: [
                             Text('E-TERNAL',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: white,
-                                fontSize: 65,
+                                fontSize: heightsize * .065,
                                 fontWeight: FontWeight.w900,
                                 letterSpacing: 2.5,
                               ),
                             ),
                             Text('Track and manage your energy\nusage efficiently',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: white,
-                                fontSize: 17.23,
-                                fontWeight: FontWeight.w800,
-                              )
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: white,
+                                  fontSize: heightsize * .01723,
+                                  fontWeight: FontWeight.w800,
+                                )
                             )
                           ],
                         ),
                       ],
                     ),
                     TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SplashScreen1()),
-                        );
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: primarycolor,
-                        foregroundColor: white,
-                        fixedSize: Size.fromWidth(233),
-                        padding: EdgeInsets.symmetric(vertical: 13),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(13)
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SplashScreen1()),
+                          );
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor: primarycolor,
+                            foregroundColor: white,
+                            fixedSize: Size(widthsize * .55, heightsize * .065),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(13)
+                            )
+                        ),
+                        child: Text('Get Started',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: heightsize * .023,
+                                fontWeight: FontWeight.w500
+                            )
                         )
-                      ),
-                      child: Text('Get Started',
-                        style: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.w500
-                        )
-                      )
                     )
                   ],
                 ),
@@ -262,6 +266,9 @@ class Index extends StatelessWidget {
 class SplashScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double widthsize = MediaQuery.of(context).size.width;
+    double heightsize = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: bgcolor1,
       body: Stack(
@@ -277,14 +284,14 @@ class SplashScreen1 extends StatelessWidget {
           ),
           Center(
             child: Container(
-              width: double.infinity,
-              height: 600,
+              width: widthsize,
+              height: heightsize * .633,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                      width: 253,
+                      width: heightsize * .27,
                       child: Image(
                           image: AssetImage('images/splash-screen1.png')
                       )
@@ -298,26 +305,26 @@ class SplashScreen1 extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: white,
-                              fontSize: 23.23,
+                              fontSize: heightsize * .02523,
                               fontWeight: FontWeight.w800,
                             )
                         ),
                         Container(
-                          width: 89,
+                          width: widthsize * .1989,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Icon(Icons.circle_rounded,
                                 color: white,
-                                size: 18,
+                                size: heightsize * .019,
                               ),
                               Icon(Icons.circle_rounded,
                                 color: Colors.white54,
-                                size: 18,
+                                size: heightsize * .019,
                               ),
                               Icon(Icons.circle_rounded,
                                 color: Colors.white54,
-                                size: 18,
+                                size: heightsize * .019,
                               )
                             ],
                           ),
@@ -332,15 +339,14 @@ class SplashScreen1 extends StatelessWidget {
                             style: TextButton.styleFrom(
                                 backgroundColor: primarycolor,
                                 foregroundColor: white,
-                                fixedSize: Size.fromWidth(233),
-                                padding: EdgeInsets.symmetric(vertical: 13),
+                                fixedSize: Size(widthsize * .55, heightsize * .065),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(13)
                                 )
                             ),
                             child: Text('Next',
                                 style: TextStyle(
-                                    fontSize: 23,
+                                    fontSize: heightsize * .023,
                                     fontWeight: FontWeight.w500
                                 )
                             )
@@ -1677,7 +1683,12 @@ class MenuState extends State<Menu> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => EditProfile()),
+                          );
+                        },
                         child: Container(
                           height: 60,
                           padding: EdgeInsets.symmetric(horizontal: 13),
@@ -1822,12 +1833,6 @@ class MenuState extends State<Menu> {
   }
 }
 
-class BudgetManaging extends StatefulWidget {
-  BudgetManaging({super.key});
-  @override
-  BudgetManagingState createState() => BudgetManagingState();
-}
-
 class EditProfile extends StatefulWidget {
   EditProfile({super.key});
   @override
@@ -1956,6 +1961,12 @@ class EditProfileState extends State<EditProfile> {
         )
     );
   }
+}
+
+class BudgetManaging extends StatefulWidget {
+  BudgetManaging({super.key});
+  @override
+  BudgetManagingState createState() => BudgetManagingState();
 }
 
 class BudgetManagingState extends State<BudgetManaging> {
