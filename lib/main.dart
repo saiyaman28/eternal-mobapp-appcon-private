@@ -114,7 +114,12 @@ class navbar extends StatelessWidget {
           ),
           Expanded(
               child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Notifications()),
+                    );
+                  },
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   child: Column(
@@ -133,7 +138,12 @@ class navbar extends StatelessWidget {
           ),
           Expanded(
               child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Menu()),
+                    );
+                  },
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   child: Column(
@@ -155,7 +165,6 @@ class navbar extends StatelessWidget {
     );
   }
 }
-
 
 // STARTING PAGE
 class Index extends StatelessWidget {
@@ -1444,6 +1453,361 @@ class MonitorState extends State<Monitor> {
                   ),
                 ],
               )
+          ),
+        )
+    );
+  }
+}
+
+class Notifications extends StatefulWidget {
+  Notifications({super.key});
+  @override
+  NotificationState createState() => NotificationState();
+}
+
+class NotificationState extends State<Notifications> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: header(context: context, pagetitle: 'Notification'),
+        backgroundColor: bgcolor2,
+        bottomNavigationBar: navbar(),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(23, 0, 23, 23),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(13, 13, 13, 23),
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.all(Radius.circular(13)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 85,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(width: 1)
+                        )
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: primarycolor,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Icon(Icons.newspaper_rounded, color: white, size: 43),
+                        ),
+                        SizedBox(width: 20),
+                        Text('Your monthly bill is close to due',
+                          style: TextStyle(
+                              fontSize: 18.23,
+                              fontWeight: FontWeight.w500,
+                              height: 1.2
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 85,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(width: 1)
+                        )
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Icon(Icons.warning_rounded, color: white, size: 43),
+                        ),
+                        SizedBox(width: 20),
+                        Text('Unidentified Person has been\nusing your energy',
+                          style: TextStyle(
+                              fontSize: 18.23,
+                              fontWeight: FontWeight.w500,
+                              height: 1.2
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 85,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(width: 1)
+                        )
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: primarycolor,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Icon(Icons.newspaper_rounded, color: white, size: 43),
+                        ),
+                        SizedBox(width: 20),
+                        Text('Your monthly bill is close to due',
+                          style: TextStyle(
+                              fontSize: 18.23,
+                              fontWeight: FontWeight.w500,
+                              height: 1.2
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 85,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(width: 1)
+                        )
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: primarycolor,
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Icon(Icons.newspaper_rounded, color: white, size: 43),
+                        ),
+                        SizedBox(width: 20),
+                        Text('Your monthly bill is close to due',
+                          style: TextStyle(
+                              fontSize: 18.23,
+                              fontWeight: FontWeight.w500,
+                              height: 1.2
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        )
+    );
+  }
+}
+
+class Menu extends StatefulWidget {
+  Menu({super.key});
+  @override
+  MenuState createState() => MenuState();
+}
+
+class MenuState extends State<Menu> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: header(context: context, pagetitle: 'Menu'),
+        backgroundColor: bgcolor2,
+        bottomNavigationBar: navbar(),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(23, 13, 23, 23),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                        width: 89,
+                        height: 89,
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 5),
+                            borderRadius: BorderRadius.circular(50)
+                        ),
+                        child: Icon(Icons.person,
+                            size: 80
+                        )
+                    ),
+                    SizedBox(width: 23),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Carl Andre Interino',
+                            style: TextStyle(
+                                fontSize: 28.23,
+                                fontWeight: FontWeight.w800,
+                                height: 1.2
+                            )
+                        ),
+                        Text('Baesa, Quezon City',
+                            style: TextStyle(
+                              color: secondarycolor,
+                              fontSize: 18.23,
+                              fontWeight: FontWeight.w600,
+                            )
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(height: 33),
+                Container(
+                  padding: EdgeInsets.fromLTRB(13, 6.5, 13, 23),
+                  decoration: BoxDecoration(
+                    color: white,
+                    borderRadius: BorderRadius.all(Radius.circular(13)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: (){},
+                        child: Container(
+                          height: 60,
+                          padding: EdgeInsets.symmetric(horizontal: 13),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(width: 1)
+                              )
+                          ),
+                          child: Row(
+                            children: [
+                              Text('Edit Profile',
+                                style: TextStyle(
+                                    fontSize: 18.23,
+                                    fontWeight: FontWeight.w800,
+                                    height: 1.2
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Container(
+                          height: 60,
+                          padding: EdgeInsets.symmetric(horizontal: 13),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(width: 1)
+                              )
+                          ),
+                          child: Row(
+                            children: [
+                              Text('Budget Managing',
+                                style: TextStyle(
+                                    fontSize: 18.23,
+                                    fontWeight: FontWeight.w800,
+                                    height: 1.2
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => Home()),
+                          // );
+                        },
+                        child: Container(
+                          height: 60,
+                          padding: EdgeInsets.symmetric(horizontal: 13),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(width: 1)
+                              )
+                          ),
+                          child: Row(
+                            children: [
+                              Text('Device Timer',
+                                style: TextStyle(
+                                    fontSize: 18.23,
+                                    fontWeight: FontWeight.w800,
+                                    height: 1.2
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => Home()),
+                          // );
+                        },
+                        child: Container(
+                          height: 60,
+                          padding: EdgeInsets.symmetric(horizontal: 13),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(width: 1)
+                              )
+                          ),
+                          child: Row(
+                            children: [
+                              Text('Privacy & Security',
+                                style: TextStyle(
+                                    fontSize: 18.23,
+                                    fontWeight: FontWeight.w800,
+                                    height: 1.2
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Login()),
+                          );
+                        },
+                        child: Container(
+                          height: 60,
+                          padding: EdgeInsets.symmetric(horizontal: 13),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(width: 1)
+                              )
+                          ),
+                          child: Row(
+                            children: [
+                              Text('Logout',
+                                style: TextStyle(
+                                    fontSize: 18.23,
+                                    fontWeight: FontWeight.w800,
+                                    height: 1.2
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         )
     );
