@@ -55,6 +55,107 @@ AppBar header({required BuildContext context, bool automaticallyImplyLeading = f
   );
 }
 
+// NAVBAR FUNCTION
+class navbar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      height: 100,
+      color: Colors.white,
+      child: Row(
+        children: [
+          Expanded(
+              child: InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()),
+                    );
+                  },
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.house_outlined, size: 40),
+                      Text('Home',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600
+                        ),
+                      )
+                    ],
+                  )
+              )
+          ),
+          Expanded(
+              child: InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Monitor()),
+                    );
+                  },
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.bar_chart_outlined, size: 40),
+                      Text('Monitor',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600
+                        ),
+                      )
+                    ],
+                  )
+              )
+          ),
+          Expanded(
+              child: InkWell(
+                  onTap: (){},
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.notifications_none_outlined, size: 40),
+                      Text('Notification',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600
+                        ),
+                      )
+                    ],
+                  )
+              )
+          ),
+          Expanded(
+              child: InkWell(
+                  onTap: (){},
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.person_outline, size: 40),
+                      Text('Menu',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600
+                          )
+                      )
+                    ],
+                  )
+              )
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 // STARTING PAGE
 class Index extends StatelessWidget {
@@ -585,7 +686,7 @@ class LoginState extends State<Login> {
                                             onPressed: () {
                                               Navigator.push(
                                                 context,
-                                                MaterialPageRoute(builder: (context) => Login()),
+                                                MaterialPageRoute(builder: (context) => Home()),
                                               );
                                             },
                                             style: TextButton.styleFrom(
@@ -988,6 +1089,361 @@ class ForgetPassState extends State<ForgetPass> {
                 ),
               ),
             ),
+          ),
+        )
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  Home({super.key});
+  @override
+  HomeState createState() => HomeState();
+}
+
+class HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: bgcolor2,
+        bottomNavigationBar: navbar(),
+        body: SingleChildScrollView(
+          child: Container(),
+        )
+    );
+  }
+}
+
+class Monitor extends StatefulWidget {
+  Monitor({super.key});
+  @override
+  MonitorState createState() => MonitorState();
+}
+
+class MonitorState extends State<Monitor> {
+  String Selected = 'Daily';
+  final List<String> DropDownItems = ['Daily', 'Weekly', 'Monthly'];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: header(context: context, pagetitle: 'Monitor'),
+        backgroundColor: bgcolor2,
+        bottomNavigationBar: navbar(),
+        body: SingleChildScrollView(
+          child: Container(
+              padding: EdgeInsets.fromLTRB(23, 0, 23, 23),
+              child: Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.fromLTRB(13, 13, 13, 18),
+                    decoration: BoxDecoration(
+                      color: white,
+                      borderRadius: BorderRadius.all(Radius.circular(13)),
+                    ),
+                    child: PopupMenuButton<String>(
+                      initialValue: Selected,
+                      color: primarycolor,
+                      constraints: BoxConstraints.expand(
+                          width: MediaQuery.of(context).size.width - 46,
+                          height: 150
+                      ),
+                      offset: Offset(13, 65),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(bottom: Radius.circular(13))
+                      ),
+                      onSelected: (String newValue) {
+                        setState(() {
+                          Selected = newValue;
+                        });
+                      },
+                      itemBuilder: (BuildContext context) {
+                        return DropDownItems.map((String value) {
+                          return PopupMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                              style: TextStyle(
+                                color: white,
+                                fontSize: 17.23,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          );
+                        }).toList();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                Selected,
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w800,
+                                  height: 1.2,
+                                ),
+                              ),
+                              Text(
+                                "13 Sept 2024",
+                                style: TextStyle(
+                                  fontSize: 17.23,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Colors.black,
+                            size: 43,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 13),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      color: white,
+                      borderRadius: BorderRadius.all(Radius.circular(13)),
+                    ),
+                  ),
+                  SizedBox(height: 13),
+                  Container(
+                    child: Wrap(
+                      spacing: 13,
+                      runSpacing: 13,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * .434,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.all(Radius.circular(13)),
+                          ),
+                          padding: EdgeInsets.fromLTRB(13, 13, 13, 18.5),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: primarycolor,
+                                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                                ),
+                                child: Icon(Icons.mode_fan_off,
+                                  color: white,
+                                  size: 30,
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Electric Fan',
+                                        style: TextStyle(
+                                          fontSize: 20.23,
+                                          fontWeight: FontWeight.w800,
+                                        )
+                                    ),
+                                    SizedBox(height: 6),
+                                    Text('Total Usage',
+                                        style: TextStyle(
+                                            fontSize: 15.23,
+                                            fontWeight: FontWeight.w500,
+                                            height: 1
+                                        )
+                                    ),
+                                    Text('150 kWh',
+                                        style: TextStyle(
+                                            fontSize: 23.23,
+                                            fontWeight: FontWeight.w700,
+                                            height: 1
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * .434,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.all(Radius.circular(13)),
+                          ),
+                          padding: EdgeInsets.fromLTRB(13, 13, 13, 18.5),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: primarycolor,
+                                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                                ),
+                                child: Icon(Icons.computer_sharp,
+                                  color: white,
+                                  size: 30,
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Computer',
+                                        style: TextStyle(
+                                          fontSize: 20.23,
+                                          fontWeight: FontWeight.w800,
+                                        )
+                                    ),
+                                    SizedBox(height: 6),
+                                    Text('Total Usage',
+                                        style: TextStyle(
+                                            fontSize: 15.23,
+                                            fontWeight: FontWeight.w500,
+                                            height: 1
+                                        )
+                                    ),
+                                    Text('100 kWh',
+                                        style: TextStyle(
+                                            fontSize: 23.23,
+                                            fontWeight: FontWeight.w700,
+                                            height: 1
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * .434,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.all(Radius.circular(13)),
+                          ),
+                          padding: EdgeInsets.fromLTRB(13, 13, 13, 18.5),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: primarycolor,
+                                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                                ),
+                                child: Icon(Icons.lightbulb_sharp,
+                                  color: white,
+                                  size: 30,
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Bulb',
+                                        style: TextStyle(
+                                          fontSize: 20.23,
+                                          fontWeight: FontWeight.w800,
+                                        )
+                                    ),
+                                    SizedBox(height: 6),
+                                    Text('Total Usage',
+                                        style: TextStyle(
+                                            fontSize: 15.23,
+                                            fontWeight: FontWeight.w500,
+                                            height: 1
+                                        )
+                                    ),
+                                    Text('50 kWh',
+                                        style: TextStyle(
+                                            fontSize: 23.23,
+                                            fontWeight: FontWeight.w700,
+                                            height: 1
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * .434,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.all(Radius.circular(13)),
+                          ),
+                          padding: EdgeInsets.fromLTRB(13, 13, 13, 18.5),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: primarycolor,
+                                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                                ),
+                                child: Icon(Icons.charging_station,
+                                  color: white,
+                                  size: 30,
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Charger',
+                                        style: TextStyle(
+                                          fontSize: 20.23,
+                                          fontWeight: FontWeight.w800,
+                                        )
+                                    ),
+                                    SizedBox(height: 6),
+                                    Text('Total Usage',
+                                        style: TextStyle(
+                                            fontSize: 15.23,
+                                            fontWeight: FontWeight.w500,
+                                            height: 1
+                                        )
+                                    ),
+                                    Text('50 kWh',
+                                        style: TextStyle(
+                                            fontSize: 23.23,
+                                            fontWeight: FontWeight.w700,
+                                            height: 1
+                                        )
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
           ),
         )
     );
